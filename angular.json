@@ -130,7 +130,9 @@
               "apps/shell/src/favicon.ico",
               "apps/shell/src/assets"
             ],
-            "styles": ["apps/shell/src/styles.css"],
+            "styles": [
+              "apps/shell/src/styles.css"
+            ],
             "scripts": [],
             "extraWebpackConfig": "apps/shell/webpack.config.js"
           },
@@ -261,7 +263,8 @@
   "defaultProject": "mfe1",
   "cli": {
     "packageManager": "yarn",
-    "defaultCollection": "@nrwl/angular"
+    "defaultCollection": "@nrwl/angular",
+    "analytics": "90b39ca8-9cb0-4cc0-a8d2-9de5e6de337a"
   },
   "schematics": {
     "@nrwl/angular:application": {
