@@ -1,5 +1,6 @@
 import {Component, ViewChild, ViewContainerRef, Inject, Injector, ComponentFactoryResolver, OnInit} from '@angular/core';
 import { AuthService } from '@demo/auth-lib';
+import { NumberService } from '@shared/services/number.service';
 
 @Component({
   selector: 'app-flights-search',
@@ -14,7 +15,8 @@ export class FlightsSearchComponent {
   constructor(
     private authService: AuthService,
     @Inject(Injector) private injector,
-    @Inject(ComponentFactoryResolver) private cfr) { }
+    @Inject(ComponentFactoryResolver) private cfr,
+    public numberS: NumberService) { }
 
 
 userName = this.authService.userName;

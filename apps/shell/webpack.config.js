@@ -5,12 +5,13 @@ const path = require("path");
 const sharedMappings = new mf.SharedMappings();
 sharedMappings.register(
     path.join(__dirname, '../../tsconfig.base.json'),
-    ['@demo/auth-lib']    
+    ['@demo/auth-lib']
 );
 
 module.exports = {
     output: {
-        uniqueName: "shell"
+        uniqueName: "shell",
+        publicPath: "auto"
     },
     optimization: {
         // Only needed to bypass a temporary bug
@@ -19,7 +20,7 @@ module.exports = {
     plugins: [
         new ModuleFederationPlugin({
             remotes: {
-                'mfe1': "mfe1@http://localhost:3000/remoteEntry.js" 
+                'mfe1': "mfe1@http://localhost:3000/remoteEntry.js"
             },
             shared: {
                 "@angular/core": {
@@ -43,4 +44,9 @@ module.exports = {
         }),
         sharedMappings.getPlugin(),
     ],
+    resolve: {
+        alias: {
+         ...sharedMappings.getAliases(),
+       }
+   }
 };

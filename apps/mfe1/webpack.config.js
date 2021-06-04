@@ -5,12 +5,13 @@ const path = require("path");
 const sharedMappings = new mf.SharedMappings();
 sharedMappings.register(
     path.join(__dirname, '../../tsconfig.base.json'),
-    ['@demo/auth-lib']    
+    ['@demo/auth-lib']
 );
 
 module.exports = {
   output: {
-    uniqueName: "mfe1"
+    uniqueName: "mfe1",
+    publicPath: "auto"
   },
   optimization: {
     // Only needed to bypass a temporary bug
@@ -22,7 +23,7 @@ module.exports = {
       filename: "remoteEntry.js",
       exposes: {
           './Module': './apps/mfe1/src/app/flights/flights.module.ts',
-      },        
+      },
       shared: {
         "@angular/core": {
             singleton: true,
@@ -41,4 +42,9 @@ module.exports = {
     }),
     sharedMappings.getPlugin(),
   ],
+  resolve: {
+    alias: {
+     ...sharedMappings.getAliases(),
+   }
+}
 };
